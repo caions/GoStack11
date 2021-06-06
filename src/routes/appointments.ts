@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import { v4 } from 'uuid';
-import { startOfHour, parseISO } from 'date-fns';
+import { startOfHour, parseISO, isEqual } from 'date-fns';
 
 const appointmentsRouter = Router();
 
-interface Appointments {
+interface Appointment {
   id: string;
   provider: string;
   date: Date;
 }
 
-const appointments: Array<Appointments> = [];
+const appointments: Array<Appointment> = [];
 
 appointmentsRouter.post('/', (req, res) => {
   const { provider, date } = req.body;
@@ -23,7 +23,18 @@ appointmentsRouter.post('/', (req, res) => {
     date: parsedDate,
   };
 
+  const findAppointmentInSameDate = appointments.find(x =>
+    isEqual(x.date, parsedDate),
+  );
+
+  if (findAppointmentInSameDate) {
+    return res
+      .status(400)
+      .json({ message: 'The appointment hour is not available.' });
+  }
+
   appointments.push(appointment);
+
   return res.json(appointment);
 });
 
