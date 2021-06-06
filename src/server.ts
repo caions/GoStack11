@@ -1,9 +1,11 @@
 import express from 'express';
-import routes from './routes';
+import appointmentsRouter from './routes/appointments';
 
 const app = express();
 const PORT = 3000;
 
-app.use('/', routes);
+app.use(express.json());
+
+app.use('/appointments', appointmentsRouter);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
