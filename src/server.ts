@@ -8,4 +8,5 @@ app.use(express.json());
 
 app.use('/appointments', appointmentsRouter);
 
+// eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
