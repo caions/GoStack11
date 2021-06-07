@@ -1,21 +1,17 @@
 import { Router } from 'express';
-import { startOfHour, parseISO, isEqual } from 'date-fns';
-import { Appointment } from '../models/Appointment';
+import { startOfHour, parseISO } from 'date-fns';
+import { AppointmentsRepository } from '../repositories/AppointmentsRepository';
 
 const appointmentsRouter = Router();
 
-const appointments: Array<Appointment> = [];
+const appointmentsRepository = new AppointmentsRepository();
 
 appointmentsRouter.post('/', (req, res) => {
   const { provider, date } = req.body;
-
   const parsedDate = startOfHour(parseISO(date));
 
-  const appointment = new Appointment(provider, parsedDate);
-
-  const findAppointmentInSameDate = appointments.find(x =>
-    isEqual(x.date, parsedDate),
-  );
+  const findAppointmentInSameDate =
+    appointmentsRepository.findByDate(parsedDate);
 
   if (findAppointmentInSameDate) {
     return res
@@ -23,13 +19,15 @@ appointmentsRouter.post('/', (req, res) => {
       .json({ message: 'The appointment hour is not available.' });
   }
 
-  appointments.push(appointment);
+  const appointment = appointmentsRepository.create(provider, parsedDate);
 
   return res.json(appointment);
 });
 
 appointmentsRouter.get('/', (req, res) => {
-  res.json({ appointments });
+  const appointments = appointmentsRepository.all();
+
+  return res.json(appointments);
 });
 
 export default appointmentsRouter;

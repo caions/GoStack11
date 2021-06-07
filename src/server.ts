@@ -1,5 +1,5 @@
 import express from 'express';
-import appointmentsRouter from './routes/appointments';
+import appointmentsRouter from './routes/appointments.routes';
 
 const app = express();
 const PORT = 3000;
