@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { startOfHour, parseISO } from 'date-fns';
 import { AppointmentsRepository } from '../repositories/AppointmentsRepository';
 import { CreateAppointmentService } from '../services/CreateAppointmentService';
+import { ReadAppointmentService } from '../services/ReadAppointmentService';
 
 const appointmentsRouter = Router();
 
@@ -28,7 +29,11 @@ appointmentsRouter.post('/', (req, res) => {
 });
 
 appointmentsRouter.get('/', (req, res) => {
-  const appointments = appointmentsRepository.all();
+  const readAppointmentService = new ReadAppointmentService(
+    appointmentsRepository,
+  );
+
+  const appointments = readAppointmentService.execute();
 
   return res.json(appointments);
 });
