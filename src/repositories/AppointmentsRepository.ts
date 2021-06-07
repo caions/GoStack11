@@ -1,6 +1,11 @@
 import { isEqual } from 'date-fns';
 import { Appointment } from '../models/Appointment';
 
+interface CreateAppointment {
+  provider: string;
+  date: Date;
+}
+
 export class AppointmentsRepository {
   private appointments: Array<Appointment>;
 
@@ -8,8 +13,8 @@ export class AppointmentsRepository {
     this.appointments = [];
   }
 
-  public create(provider: string, date: Date): Appointment {
-    const appointment = new Appointment(provider, date);
+  public create({ date, provider }: CreateAppointment): Appointment {
+    const appointment = new Appointment({ provider, date });
     this.appointments.push(appointment);
     return appointment;
   }

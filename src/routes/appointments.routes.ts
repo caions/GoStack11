@@ -19,7 +19,10 @@ appointmentsRouter.post('/', (req, res) => {
       .json({ message: 'The appointment hour is not available.' });
   }
 
-  const appointment = appointmentsRepository.create(provider, parsedDate);
+  const appointment = appointmentsRepository.create({
+    provider,
+    date: parsedDate,
+  });
 
   return res.json(appointment);
 });
