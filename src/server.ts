@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import express from 'express';
 import appointmentsRouter from './routes/appointments.routes';
 
