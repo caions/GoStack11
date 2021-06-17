@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('appointments')
