@@ -19,7 +19,7 @@ export class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw Error('The appointment hour is not available.');
+      throw new Error('The appointment hour is not available.');
     }
 
     const appointment = appointmentsRepository.create({

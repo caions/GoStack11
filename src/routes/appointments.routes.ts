@@ -31,4 +31,4 @@ appointmentsRouter.get('/', async (req, res) => {
   return res.json(appointments);
 });
 
-export default appointmentsRouter;
+export { appointmentsRouter };

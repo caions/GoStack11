@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { CreateUserService } from '../services/CreateUsertService';
+import { CreateUserService } from '../services/CreateUserService';
 
 const usersRouter = Router();
 
@@ -10,7 +10,11 @@ usersRouter.post('/', async (req, res) => {
 
     const createUserService = new CreateUserService();
 
-    const user = await createUserService.execute({ name, email, password });
+    const user = await createUserService.execute({
+      name,
+      email,
+      password,
+    });
 
     return res.json(user);
   } catch (error) {
@@ -18,4 +22,4 @@ usersRouter.post('/', async (req, res) => {
   }
 });
 
-export default usersRouter;
+export { usersRouter };

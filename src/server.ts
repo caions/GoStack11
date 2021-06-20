@@ -1,8 +1,9 @@
 import 'reflect-metadata';
 
 import express from 'express';
-import appointmentsRouter from './routes/appointments.routes';
-import usersRouter from './routes/users.routes';
+import { sessionsRouter } from './routes/sessions.routes';
+import { appointmentsRouter } from './routes/appointments.routes';
+import { usersRouter } from './routes/users.routes';
 
 import './database';
 
@@ -11,6 +12,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use('/sessions', sessionsRouter);
 app.use('/appointments', appointmentsRouter);
 app.use('/users', usersRouter);
 
