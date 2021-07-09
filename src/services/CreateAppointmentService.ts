@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 
 import { Appointment } from '../models/Appointment';
 import { AppointmentsRepository } from '../repositories/AppointmentsRepository';
+import { AppError } from '../errors/AppError';
 
 interface IRequest {
   providerId: string;
@@ -19,7 +20,7 @@ export class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw new Error('The appointment hour is not available.');
+      throw new AppError('The appointment hour is not available.');
     }
 
     const appointment = appointmentsRepository.create({
