@@ -10,21 +10,17 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 usersRouter.post('/', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-    const createUserService = new CreateUserService();
+  const createUserService = new CreateUserService();
 
-    const user = await createUserService.execute({
-      name,
-      email,
-      password,
-    });
+  const user = await createUserService.execute({
+    name,
+    email,
+    password,
+  });
 
-    return res.json(user);
-  } catch (error) {
-    return res.status(404).json({ error: error.message });
-  }
+  return res.json(user);
 });
 
 usersRouter.patch(
@@ -33,19 +29,14 @@ usersRouter.patch(
   upload.single('avatar'),
   async (req, res) => {
     if (req.file) {
-      try {
-        const updateUserAvatarService = new UpdateUserAvatarService();
-        const user = await updateUserAvatarService.execute({
-          user_id: req.user.id,
-          avatarFilename: req.file.filename,
-        });
-        return res.json({ user });
-      } catch (error) {
-        return res.status(404).json({ error: error.message });
-      }
-    } else {
-      return res.status(404).json({ error: 'file undefined' });
+      const updateUserAvatarService = new UpdateUserAvatarService();
+      const user = await updateUserAvatarService.execute({
+        user_id: req.user.id,
+        avatarFilename: req.file.filename,
+      });
+      return res.json({ user });
     }
+    return res.status(404).json({ error: 'file undefined' });
   },
 );
 
