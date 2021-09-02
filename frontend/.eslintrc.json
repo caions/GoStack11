@@ -23,6 +23,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "arrow-body-style": "off",
     "no-shadow": "off",
     "linebreak-style": ["error", "windows"],
     "no-return-assign": "off",
