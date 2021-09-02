@@ -7,10 +7,7 @@
   "extends": [
     "plugin:react/recommended",
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/react",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -23,17 +20,15 @@
   "plugins": [
     "react",
     "react-hooks",
-    "@typescript-eslint",
-    "eslint-plugin-no-inline-styles",
-    "prettier"
+    "@typescript-eslint"
   ],
   "rules": {
     "no-shadow": "off",
+    "linebreak-style": ["error", "windows"],
     "no-return-assign": "off",
     "consistent-return": "off",
     "react/require-default-props": "off",
     "no-shadow": "off",
-    "prettier/prettier": "error",
     "@typescript-eslint/no-empty-function": "off",
     "react/prop-types": "off",
     "import/prefer-default-export": "off",
@@ -48,7 +43,7 @@
       "error",
       { "enableDangerousAutofixThisMayCauseInfiniteLoops": true }
     ],
-    "no-inline-styles/no-inline-styles": 2,
+    "react/no-inline-styles": 0,
     "react/jsx-filename-extension": [
       1,
       {
