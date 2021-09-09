@@ -17,11 +17,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
     "arrow-body-style": "off",
     "no-shadow": "off",
@@ -39,7 +35,10 @@
     "import/no-extraneous-dependencies": "error",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/jsx-no-bind": "off",
+    "camelcase": "off",
+    "object-curly-newline": "off",
     "react-hooks/exhaustive-deps": [
       "error",
       { "enableDangerousAutofixThisMayCauseInfiniteLoops": true }
