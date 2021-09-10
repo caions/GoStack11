@@ -19,6 +19,7 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "react/jsx-one-expression-per-line": "off",
     "arrow-body-style": "off",
     "no-shadow": "off",
     "linebreak-style": ["error", "windows"],
